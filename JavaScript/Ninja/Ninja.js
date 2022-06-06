@@ -24,3 +24,4 @@ const ninja1=new Ninja("dania",5);
 ninja1.SayName();
 ninja1.drinkSake();
 ninja1.showStats();
+ninja1.showStats();
