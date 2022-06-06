@@ -18,7 +18,7 @@ class Unit extends Card{
         if( unit instanceof Unit ) {
             unit.resilence -= this.power;
         } else {
-            throw new Error( "Target must be a unit!" );
+            throw new Error( " must be a unit" );
         }
     }
 }
@@ -45,10 +45,10 @@ class Effect extends Card{
             }else if (this.stat == "Power"){
                 unit.power += this.magnitude;
             } else {
-                console.log("This is not an Option idiot !");
+                console.log("!!!!!!");
             }
         } else {
-            throw new Error( "Target must be a unit!" );
+            throw new Error( "must be a unit!" );
         }
         
     }
