@@ -3,11 +3,11 @@ import react, { useState } from 'react';
 
 export const Box = (props) => {
     const [newColor, setNewColor] = useState("");
-    const [size, setSize] = useState(200);
+  
     
     const submitBox =(e)=> {
       e.preventDefault();
-      props.newBox({color: newColor, size: size});
+      props.newBox({color: newColor, size: 200});
       setNewColor("");
     }
 
