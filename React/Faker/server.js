@@ -1,5 +1,4 @@
 const express = require("express");
-
 const  faker  = require("faker");
 const app = express();
 const port = 8000;
@@ -62,10 +61,20 @@ app.get("/api/users/new", (req, res) => {
     res.json( newUser );
 });
 
-app.get("/api/user/company", (req, res) => {
+app.get("/api/companies/new", (req, res) => {
     const newCompany=createCompany();
     res.json( newCompany );
 });
+
+app.get("/api/user/company", (req, res) => {
+    const newCompany=createCompany();
+    const newUser=new User();
+    const array=[];
+    array.push(newCompany);
+    array.push(newUser);
+    res.json( array );
+});
+
 // app.post("/api/users", (req, res) => {
 //         // req.body will contain the form data from Postman or from React
 //         console.log(req.body);
