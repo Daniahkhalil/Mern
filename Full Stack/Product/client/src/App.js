@@ -1,12 +1,28 @@
 import React from 'react';
-import ProductForm from './components/ProductForm';
-
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from "react-router-dom";
+import Main from './views/Main';
+import Detail from './views/Detail';
+    
 function App() {
   return (
-    <div className="App">
-      <ProductForm/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/product/">
+            <Main />
+          </Route>
+          <Route path="product/:id">
+            <Detail />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
+    
 export default App;
 
