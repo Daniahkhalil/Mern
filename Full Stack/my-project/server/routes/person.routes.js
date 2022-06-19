@@ -5,6 +5,12 @@ module.exports = function(app){
     // ...
     app.get('/api/people', PersonController.getAllPeople);
 // ...
+    app.put('/api/people/:id', PersonController.updatePerson);
+    app.delete('/api/people/:id', PersonController.deletePerson);
+
+
+
+
 
  
 }
