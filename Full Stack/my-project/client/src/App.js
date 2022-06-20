@@ -13,18 +13,20 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/people/">
+
+          <Route exact path="/people/">
             <Main />
           </Route>
-          <Route path="people/:id">
+
+          <Route exact path="/people/:id">
             <Detail />
           </Route>
-          ...
-// Your other routes
-        <Route path="/people/:id/edit">
-          <Update />
+
+
+        <Route exact path="/people/:id/edit">
+          <Update  />
         </Route>
-// ...
+
 
 
         </Switch>

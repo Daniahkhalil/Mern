@@ -1,35 +1,39 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import DeleteButton from './DeleteButton';
     
 const ProductList = (props) => {
-    const { removeFromDom } = props;
+    const [product, setProduct] = useState([]);
     
-    const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8000/api/product/' + productId)
-            .then(res => {
-                removeFromDom(productId)
-            })
-            .catch(err => console.error(err));
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/product')
+            .then(res => setProduct(res.data));
+    }, [])
+    
+    const removeFromDom = productId => {
+        setProduct(product.filter(product => product._id != productId))
     }
     
     return (
         <div>
-            {props.product.map((product, idx) => {
-                return <p key={idx}>
-                    <Link to={"/" + product._id}>
-                        {product.title}
-                        {/* {product.price},
-                        {product.description} */}
-                    </Link>
-                    |
-                    <button onClick={(e)=>{deleteProduct(product._id)}}>
-                        Delete
-                    </button>
-                </p>
+            {product.map((product, idx) => {
+                return (
+                    <p key={idx}>
+                        <Link to={"/product/" + product._id}>
+                            {product.title} {product.price}{product.description}
+                        </Link>
+                        |
+                        <Link to={"/product/" + product._id + "/edit"}>
+                            Edit
+                        </Link> 
+                        |
+                       <DeleteButton productId={product._id} successCallback={()=>removeFromDom(product._id)}/>
+                    </p>
+                )
             })}
         </div>
-    )
+    );
 }
     
 export default ProductList;

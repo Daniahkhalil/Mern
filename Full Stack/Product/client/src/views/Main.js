@@ -5,27 +5,34 @@ import axios from 'axios';
     
 const Main = (props) => {
     const [product, setProduct] = useState([]);
+    const [loaded, setLoaded] = useState(false);
     
     
     useEffect(()=>{
         axios.get('http://localhost:8000/api/product')
-            .then(res=>{
-                setProduct(res.data);
-               
-            })
-            .catch(err => console.error(err));
-    },[]);
+        .then(res =>{ 
+            setProduct(res.data)
+            setLoaded(true);
+        });
+}, [])
 
         
     const removeFromDom = productId => {
         setProduct(product.filter(product => product._id != productId));
     }
+
+    const createProduct = product => {
+        axios.post('http://localhost:8000/api/product', product)
+            .then(res=>{
+                setProduct([...product, res.data]);
+            })
+    }
     
     return (
         <div>
-        <ProductForm/>
+        <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice="0" initialDescription=""/>
         <hr/>
-        <ProductList product={product} removeFromDom={removeFromDom}/>
+        {loaded &&  <ProductList product={product} removeFromDom={removeFromDom}/>}
      </div>
     )
 }

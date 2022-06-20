@@ -19,9 +19,9 @@ const Detail = (props) => {
                     </Link>
 
 
-            {/* <p>First Name: {product.title}</p>
+             <p>First Name: {product.title}</p>
             <p>Last Name: {product.price}</p>
-            <p>Last Name: {product.description}</p> */}
+            <p>Last Name: {product.description}</p> 
         </div>
     )
 }
