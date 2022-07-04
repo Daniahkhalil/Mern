@@ -19,9 +19,11 @@ const Chat = (props) => {
       },[]);
      
       return (
+        <>
         <div >
-          <h1> Chat Component</h1>
+          <h1>MERN Chat</h1>
         </div>
+        </>
       );
 }
 
